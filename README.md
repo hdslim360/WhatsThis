@@ -1,4 +1,4 @@
-## Contributiors: 
+## Contributors: 
 
 ```bash
 Chad LaFontaine chad.lafontaine@selu.edu
