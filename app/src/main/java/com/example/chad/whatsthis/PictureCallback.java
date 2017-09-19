@@ -27,6 +27,7 @@ interface PictureCallback extends Camera.PictureCallback
             if (pictureFile == null){
                 Log.d(TAG, "Error creating media file, check storage permissions: " + e.getMessage());
                 return;
+
             }
 
             try {
