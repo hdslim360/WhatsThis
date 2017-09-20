@@ -18,7 +18,7 @@ import static com.example.chad.whatsthis.Main.getOutputMediaFile;
 
 interface PictureCallback extends Camera.PictureCallback
 {
-    public PictureCallback mPicture = new PictureCallback() {
+    PictureCallback mPicture = new PictureCallback() {
 
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
