@@ -1,1 +1,1 @@
-include ':app', ':visionbackend'
+include ':app'
