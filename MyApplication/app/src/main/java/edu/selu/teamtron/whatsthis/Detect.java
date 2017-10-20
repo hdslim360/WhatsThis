@@ -27,12 +27,14 @@ import com.google.cloud.vision.v1.WebDetection.WebImage;
 import com.google.cloud.vision.v1.WebDetection.WebPage;
 import com.google.cloud.vision.v1.Word;
 import com.google.protobuf.ByteString;
+import com.google.protobuf.Descriptors;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Detect {
 
@@ -136,10 +138,8 @@ public class Detect {
 
     /**
      * Constructs a {@link Detect} which connects to the Cloud Vision API.
-     *
-     * @param client The Vision API client.
      */
-    public Detect() {
+    public Detect() throws IOException, Exception {
     }
 
     /**
@@ -258,7 +258,9 @@ public class Detect {
 
                 // For full list of available annotations, see http://g.co/cloud/vision/docs
                 for (EntityAnnotation annotation : res.getLabelAnnotationsList()) {
-                    annotation.getAllFields().forEach((k, v) -> out.printf("%s : %s\n", k, v.toString()));
+                    for (Map.Entry<Descriptors.FieldDescriptor, Object> entry : annotation.getAllFields().entrySet()) {
+                        out.printf("%s : %s\n", entry.getKey(), entry.getValue().toString());
+                    }
                 }
             }
         }
@@ -295,8 +297,10 @@ public class Detect {
 
                 // For full list of available annotations, see http://g.co/cloud/vision/docs
                 for (EntityAnnotation annotation : res.getLabelAnnotationsList()) {
-                    annotation.getAllFields().forEach((k, v) ->
-                            out.printf("%s : %s\n", k, v.toString()));
+                    for (Map.Entry<Descriptors.FieldDescriptor, Object> entry : annotation.getAllFields().entrySet()) {
+                        out.printf("%s : %s\n", entry.getKey(), entry.getValue().toString());
+                    }
+
                 }
             }
         }
@@ -660,8 +664,7 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
-    public static void detectSafeSearch(String filePath, PrintStream out) throws Exception,
-            compile 'com.google.cloud:google-cloud-vision:0.25.0-beta'            IOException {
+    public static void detectSafeSearch(String filePath, PrintStream out) throws IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
         ByteString imgBytes = ByteString.readFrom(new FileInputStream(filePath));
