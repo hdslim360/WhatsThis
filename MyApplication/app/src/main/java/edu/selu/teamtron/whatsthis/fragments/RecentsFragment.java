@@ -7,6 +7,10 @@ import android.view.ViewGroup;
 
 public class RecentsFragment extends BaseFragment{
 
+    public static RecentsFragment create() {
+        return new RecentsFragment();
+    }
+
     @Override
     public int getLayoutResId() {
         return R.layout.fragment_recents;

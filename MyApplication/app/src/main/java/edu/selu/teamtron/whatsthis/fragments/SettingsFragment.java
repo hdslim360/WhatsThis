@@ -7,6 +7,10 @@ import android.view.ViewGroup;
 
 public class SettingsFragment extends BaseFragment {
 
+    public static SettingsFragment create() {
+        return new SettingsFragment();
+    }
+
     @Override
     public int getLayoutResId() {
         return R.layout.fragment_settings;

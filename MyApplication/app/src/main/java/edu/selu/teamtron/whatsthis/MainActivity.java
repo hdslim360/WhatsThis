@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import edu.selu.teamtron.whatsthis.adapter.MainPagerAdapter;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -14,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
 
         View background = findViewById(R.id.am_background_view);
         ViewPager viewPager = (ViewPager) findViewById(R.id.am_view_pager);
-        viewPager.setAdapter();
+        MainPagerAdapter adapter = new MainPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
 
     }
 }
