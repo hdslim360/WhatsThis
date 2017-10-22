@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\Chad\\AndroidStudioProjects\\WorkingCamera\\Application\\build\\intermediates\\res\\merged\\debug\\layout-land\\fragment_camera2_basic.xml",
+        "source": "C:\\Users\\Chad\\AndroidStudioProjects\\WorkingCamera\\Application\\src\\main\\res\\layout-land\\fragment_camera2_basic.xml"
+    },
+    {
+        "merged": "C:\\Users\\Chad\\AndroidStudioProjects\\Cmps285Fall17Grp7\\Application\\build\\intermediates\\res\\merged\\debug\\layout-land\\fragment_camera2_basic.xml",
+        "source": "C:\\Users\\Chad\\AndroidStudioProjects\\Cmps285Fall17Grp7\\Application\\src\\main\\res\\layout-land\\fragment_camera2_basic.xml"
+    },
+    {
+        "merged": "C:\\GIT_ROOT\\Cmps285Fall17Grp7\\Application\\build\\intermediates\\res\\merged\\debug\\layout-land\\fragment_camera2_basic.xml",
+        "source": "C:\\GIT_ROOT\\Cmps285Fall17Grp7\\Application\\src\\main\\res\\layout-land\\fragment_camera2_basic.xml"
+    }
+]
