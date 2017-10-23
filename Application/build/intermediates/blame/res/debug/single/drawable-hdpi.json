@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\GIT_ROOT\\Cmps285Fall17Grp7\\Application\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\tile.9.png",
+        "source": "C:\\GIT_ROOT\\Cmps285Fall17Grp7\\Application\\src\\main\\res\\drawable-hdpi\\tile.9.png"
+    },
+    {
         "merged": "C:\\Users\\Chad\\AndroidStudioProjects\\Cmps285Fall17Grp7\\Application\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_launcher.png",
         "source": "C:\\Users\\Chad\\AndroidStudioProjects\\Cmps285Fall17Grp7\\Application\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
     },
@@ -10,6 +14,14 @@
     {
         "merged": "C:\\Users\\Chad\\AndroidStudioProjects\\WorkingCamera\\Application\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\tile.9.png",
         "source": "C:\\Users\\Chad\\AndroidStudioProjects\\WorkingCamera\\Application\\src\\main\\res\\drawable-hdpi\\tile.9.png"
+    },
+    {
+        "merged": "C:\\GIT_ROOT\\Cmps285Fall17Grp7\\Application\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_action_info.png",
+        "source": "C:\\GIT_ROOT\\Cmps285Fall17Grp7\\Application\\src\\main\\res\\drawable-hdpi\\ic_action_info.png"
+    },
+    {
+        "merged": "C:\\GIT_ROOT\\Cmps285Fall17Grp7\\Application\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_launcher.png",
+        "source": "C:\\GIT_ROOT\\Cmps285Fall17Grp7\\Application\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
     },
     {
         "merged": "C:\\Users\\Chad\\AndroidStudioProjects\\WorkingCamera\\Application\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_action_info.png",
