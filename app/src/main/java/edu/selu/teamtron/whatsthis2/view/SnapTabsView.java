@@ -15,10 +15,10 @@ import edu.selu.teamtron.whatsthis2.R;
 
 public class SnapTabsView extends FrameLayout implements ViewPager.OnPageChangeListener {
 
-    private ImageView mCameraButton;
-    private ImageView mSettingsButton;
-    private ImageView mRecentsButton;
-    private ImageView mCloseButton;
+    private ImageView mCenterView;
+    private ImageView mStartView;
+    private ImageView mBottomView;
+    private ImageView mEndView;
     private View mIndicator;
 
     public SnapTabsView(@NonNull Context context) {
@@ -36,13 +36,14 @@ public class SnapTabsView extends FrameLayout implements ViewPager.OnPageChangeL
     }
 
     private void init() {
-        LayoutInflater.from(getContext()).inflate(R.layout.view_snap_tabs, this, false);
+        LayoutInflater.from(getContext()).inflate(R.layout.view_snap_tabs, this, true);
 
-        mCameraButton = findViewById(R.id.vst_camera_button);
-        mSettingsButton = findViewById(R.id.vst_settings_button);
-        mRecentsButton = findViewById(R.id.vst_recents_button);
-        mCloseButton = findViewById(R.id.vst_close_button);
+        mCenterView = (ImageView) findViewById(R.id.vst_center_button);
+        mStartView = (ImageView) findViewById(R.id.vst_start_button);
+        mEndView = (ImageView) findViewById(R.id.vst_end_button);
+        mBottomView = (ImageView) findViewById(R.id.vst_bottom_button);
         mIndicator = findViewById(R.id.vst_indicator);
+
     }
 
     @Override
@@ -60,3 +61,4 @@ public class SnapTabsView extends FrameLayout implements ViewPager.OnPageChangeL
 
     }
 }
+
