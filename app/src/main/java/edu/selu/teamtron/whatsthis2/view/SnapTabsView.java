@@ -46,6 +46,10 @@ public class SnapTabsView extends FrameLayout implements ViewPager.OnPageChangeL
 
     }
 
+    public ImageView getCenterView() {
+        return mCenterView;
+    }
+
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -61,4 +65,3 @@ public class SnapTabsView extends FrameLayout implements ViewPager.OnPageChangeL
 
     }
 }
-
