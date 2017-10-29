@@ -66,6 +66,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/template/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/rs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/shaders" isTestSource="false" />
+<<<<<<< HEAD
       <sourceFolder url="file://$MODULE_DIR$/src/test/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/assets" type="java-test-resource" />
@@ -73,6 +74,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/shaders" isTestSource="true" />
+=======
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
       <sourceFolder url="file://$MODULE_DIR$/tests/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/tests/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/tests/assets" type="java-test-resource" />
@@ -80,8 +83,19 @@
       <sourceFolder url="file://$MODULE_DIR$/tests/src" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests/shaders" isTestSource="true" />
+<<<<<<< HEAD
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
+=======
+      <sourceFolder url="file://$MODULE_DIR$/src/test/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/shaders" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-safeguard" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
@@ -90,7 +104,10 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
+<<<<<<< HEAD
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
+=======
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
     </content>
     <orderEntry type="jdk" jdkName="Android API 25 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

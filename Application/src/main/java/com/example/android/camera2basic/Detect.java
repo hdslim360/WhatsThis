@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /*package edu.selu.teamtron.whatsthis;
+=======
+package edu.selu.teamtron.whatsthis;
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
 
 import com.google.cloud.vision.v1.AnnotateImageRequest;
 import com.google.cloud.vision.v1.AnnotateImageResponse;
@@ -37,16 +41,26 @@ import java.util.List;
 import java.util.Map;
 
 public class Detect {
+<<<<<<< HEAD
 */
+=======
+
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
     /**
      * Detects entities,sentiment and syntax in a document using the Natural Language API.
      *
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
 //    public static void main(String[] args) throws Exception, IOException {
 //        argsHelper(args, System.out);
    // }
+=======
+    public static void main(String[] args) throws Exception, IOException {
+        argsHelper(args, System.out);
+    }
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
 
     /**
      * Helper that handles the input passed to the program.
@@ -54,7 +68,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
  /*   public static void argsHelper(String[] args, PrintStream out) throws Exception, IOException {
+=======
+    public static void argsHelper(String[] args, PrintStream out) throws Exception, IOException {
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
         if (args.length < 1) {
             out.println("Usage:");
             out.printf(
@@ -139,8 +157,13 @@ public class Detect {
     /**
      * Constructs a {@link Detect} which connects to the Cloud Vision API.
      */
+<<<<<<< HEAD
 /*   public Detect() throws IOException, Exception {
    }
+=======
+    public Detect() throws IOException, Exception {
+    }
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
 
     /**
      * Detects faces in the specified local image.
@@ -150,7 +173,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
 /*    public static void detectFaces(String filePath, PrintStream out) throws Exception, IOException {
+=======
+    public static void detectFaces(String filePath, PrintStream out) throws Exception, IOException {
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
         ByteString imgBytes = ByteString.readFrom(new FileInputStream(filePath));
@@ -192,7 +219,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
   /*  public static void detectFacesGcs(String gcsPath, PrintStream out) throws Exception,
+=======
+    public static void detectFacesGcs(String gcsPath, PrintStream out) throws Exception,
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
             IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
@@ -235,7 +266,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
  /*   public static void detectLabels(String filePath, PrintStream out) throws Exception, IOException {
+=======
+    public static void detectLabels(String filePath, PrintStream out) throws Exception, IOException {
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
         ByteString imgBytes = ByteString.readFrom(new FileInputStream(filePath));
@@ -274,7 +309,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
 /*    public static void detectLabelsGcs(String gcsPath, PrintStream out) throws Exception,
+=======
+    public static void detectLabelsGcs(String gcsPath, PrintStream out) throws Exception,
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
             IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
@@ -314,7 +353,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
 /*    public static void detectLandmarks(String filePath, PrintStream out) throws Exception,
+=======
+    public static void detectLandmarks(String filePath, PrintStream out) throws Exception,
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
             IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
         ByteString imgBytes = ByteString.readFrom(new FileInputStream(filePath));
@@ -352,7 +395,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
  /*   public static void detectLandmarksUrl(String url, PrintStream out) throws Exception,
+=======
+    public static void detectLandmarksUrl(String url, PrintStream out) throws Exception,
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
             IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
@@ -390,7 +437,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
 /*    public static void detectLandmarksGcs(String gcsPath, PrintStream out) throws Exception,
+=======
+    public static void detectLandmarksGcs(String gcsPath, PrintStream out) throws Exception,
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
             IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
@@ -428,7 +479,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
  /*   public static void detectLogos(String filePath, PrintStream out) throws Exception, IOException {
+=======
+    public static void detectLogos(String filePath, PrintStream out) throws Exception, IOException {
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
         ByteString imgBytes = ByteString.readFrom(new FileInputStream(filePath));
@@ -465,7 +520,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
  /*   public static void detectLogosGcs(String gcsPath, PrintStream out) throws Exception,
+=======
+    public static void detectLogosGcs(String gcsPath, PrintStream out) throws Exception,
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
             IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
@@ -502,7 +561,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
  /*   public static void detectText(String filePath, PrintStream out) throws Exception, IOException {
+=======
+    public static void detectText(String filePath, PrintStream out) throws Exception, IOException {
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
         ByteString imgBytes = ByteString.readFrom(new FileInputStream(filePath));
@@ -540,7 +603,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
   /*  public static void detectTextGcs(String gcsPath, PrintStream out) throws Exception, IOException {
+=======
+    public static void detectTextGcs(String gcsPath, PrintStream out) throws Exception, IOException {
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
         ImageSource imgSource = ImageSource.newBuilder().setGcsImageUri(gcsPath).build();
@@ -577,7 +644,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
  /*   public static void detectProperties(String filePath, PrintStream out) throws Exception,
+=======
+    public static void detectProperties(String filePath, PrintStream out) throws Exception,
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
             IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
@@ -621,7 +692,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
  /*   public static void detectPropertiesGcs(String gcsPath, PrintStream out) throws Exception,
+=======
+    public static void detectPropertiesGcs(String gcsPath, PrintStream out) throws Exception,
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
             IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
@@ -664,7 +739,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
  /*   public static void detectSafeSearch(String filePath, PrintStream out) throws IOException {
+=======
+    public static void detectSafeSearch(String filePath, PrintStream out) throws IOException {
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
         ByteString imgBytes = ByteString.readFrom(new FileInputStream(filePath));
@@ -705,7 +784,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
  /*   public static void detectSafeSearchGcs(String gcsPath, PrintStream out) throws Exception,
+=======
+    public static void detectSafeSearchGcs(String gcsPath, PrintStream out) throws Exception,
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
             IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
@@ -746,7 +829,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
  /*   public static void detectWebDetections(String filePath, PrintStream out) throws Exception,
+=======
+    public static void detectWebDetections(String filePath, PrintStream out) throws Exception,
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
             IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
@@ -802,7 +889,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
  /*   public static void detectWebDetectionsGcs(String gcsPath, PrintStream out) throws Exception,
+=======
+    public static void detectWebDetectionsGcs(String gcsPath, PrintStream out) throws Exception,
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
             IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
@@ -857,7 +948,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
  /*   public static void detectCropHints(String filePath, PrintStream out) throws Exception,
+=======
+    public static void detectCropHints(String filePath, PrintStream out) throws Exception,
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
             IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
@@ -896,7 +991,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
  /*   public static void detectCropHintsGcs(String gcsPath, PrintStream out) throws Exception,
+=======
+    public static void detectCropHintsGcs(String gcsPath, PrintStream out) throws Exception,
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
             IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
@@ -934,7 +1033,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
  /*   public static void detectDocumentText(String filePath, PrintStream out) throws Exception,
+=======
+    public static void detectDocumentText(String filePath, PrintStream out) throws Exception,
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
             IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
@@ -993,7 +1096,11 @@ public class Detect {
      * @throws Exception on errors while closing the client.
      * @throws IOException on Input/Output errors.
      */
+<<<<<<< HEAD
  /*   public static void detectDocumentTextGcs(String gcsPath, PrintStream out) throws Exception,
+=======
+    public static void detectDocumentTextGcs(String gcsPath, PrintStream out) throws Exception,
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
             IOException {
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
@@ -1041,5 +1148,9 @@ public class Detect {
             }
         }
     }
+<<<<<<< HEAD
 }
  */
+=======
+}
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
