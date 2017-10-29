@@ -1,5 +1,5 @@
 /*package edu.selu.teamtron.whatsthis2;
-
+//vision not working on server so class commented out
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
