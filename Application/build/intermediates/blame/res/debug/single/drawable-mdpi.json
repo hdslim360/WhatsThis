@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "C:\\Users\\Chad\\AndroidStudioProjects\\WorkingCamera\\Application\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_action_info.png",
+        "source": "C:\\Users\\Chad\\AndroidStudioProjects\\WorkingCamera\\Application\\src\\main\\res\\drawable-mdpi\\ic_action_info.png"
+    },
+    {
+        "merged": "C:\\Users\\Chad\\AndroidStudioProjects\\Cmps285Fall17Grp7\\Application\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_action_info.png",
+        "source": "C:\\Users\\Chad\\AndroidStudioProjects\\Cmps285Fall17Grp7\\Application\\src\\main\\res\\drawable-mdpi\\ic_action_info.png"
+    },
+    {
+        "merged": "C:\\Users\\Chad\\AndroidStudioProjects\\Cmps285Fall17Grp7\\Application\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_launcher.png",
+        "source": "C:\\Users\\Chad\\AndroidStudioProjects\\Cmps285Fall17Grp7\\Application\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Chad\\AndroidStudioProjects\\WorkingCamera\\Application\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_launcher.png",
+        "source": "C:\\Users\\Chad\\AndroidStudioProjects\\WorkingCamera\\Application\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    }
+]
