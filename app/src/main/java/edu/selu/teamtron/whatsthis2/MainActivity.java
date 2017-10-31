@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, R.string.image_picker_error, Toast.LENGTH_LONG).show();
             }
         } else {
-            Log.d(TAG, "Image picker gave us a null image.");
+            Log.d(TAG, "Image picker gave us something other than an image.");
             Toast.makeText(this, R.string.image_picker_error, Toast.LENGTH_LONG).show();
         }
     }
