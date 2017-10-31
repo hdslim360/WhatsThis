@@ -256,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "failed to make API request because of other IOException " +
                             e.getMessage());
                 }
-                return "Cloud Vision API request failed. Check logs for details.";
+                return "Cloud Vision request failed.";
             }
 
             protected void onPostExecute(String result) {
