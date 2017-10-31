@@ -1,5 +1,6 @@
-/*package edu.selu.teamtron.whatsthis2;
-//vision not working on server so class commented out
+package edu.selu.teamtron.whatsthis2;
+
+
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
@@ -45,4 +46,3 @@ public class PermissionUtils {
         return false;
     }
 }
-*/
