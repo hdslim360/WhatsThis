@@ -3,6 +3,7 @@ package edu.selu.teamtron.whatsthis2;
 
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -59,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView mImageDetails;
     private ImageView mMainImage;
+
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,8 +181,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     private void callCloudVision(final Bitmap bitmap) throws IOException {
         // Switch text to loading
+
         mImageDetails.setText(R.string.loading_message);
 
         // Do the real work in an async task, because we need to use the network anyway
@@ -231,10 +239,40 @@ public class MainActivity extends AppCompatActivity {
 
                         // add the features we want
                         annotateImageRequest.setFeatures(new ArrayList<Feature>() {{
-                            Feature labelDetection = new Feature();
-                            labelDetection.setType("LABEL_DETECTION");
-                            labelDetection.setMaxResults(10);
-                            add(labelDetection);
+                            Feature featListLabel = new Feature();
+                            featListLabel.setType("LABEL_DETECTION");
+                            featListLabel.setMaxResults(5);
+                            add(featListLabel);
+
+                            Feature featListLandmark = new Feature();
+                            featListLandmark.setType("LANDMARK_DETECTION");
+                            featListLandmark.setMaxResults(5);
+                            add(featListLandmark);
+
+                            Feature featListLogo = new Feature();
+                            featListLogo.setType("LOGO_DETECTION");
+                            featListLogo.setMaxResults(5);
+                            add(featListLogo);
+
+                            Feature featListText = new Feature();
+                            featListText.setType("TEXT_DETECTION");
+                            featListText.setMaxResults(5);
+                            add(featListText);
+
+                            Feature featListFace = new Feature();
+                            featListFace.setType("FACE_DETECTION");
+                            featListFace.setMaxResults(5);
+                            add(featListFace);
+
+                            Feature featListWeb = new Feature();
+                            featListWeb.setType("WEB_DETECTION");
+                            featListWeb.setMaxResults(5);
+                            add(featListWeb);
+
+                            Feature featListSafe = new Feature();
+                            featListSafe.setType("SAFE_SEARCH_DETECTION");
+                            featListSafe.setMaxResults(5);
+                            add(featListSafe);
                         }});
 
                         // Add the list of one thing to the request
@@ -289,15 +327,62 @@ public class MainActivity extends AppCompatActivity {
         String message = "I found these things:\n\n";
 
         List<EntityAnnotation> labels = response.getResponses().get(0).getLabelAnnotations();
+        List<EntityAnnotation> landmarks = response.getResponses().get(0).getLandmarkAnnotations();
+        List<EntityAnnotation> logos = response.getResponses().get(0).getLogoAnnotations();
+        List<EntityAnnotation> texts = response.getResponses().get(0).getTextAnnotations();
+
         if (labels != null) {
+            message += "Labels: \n";
             for (EntityAnnotation label : labels) {
                 message += String.format(Locale.US, "%.3f: %s", label.getScore(), label.getDescription());
                 message += "\n";
             }
         } else {
-            message += "nothing";
+            message += "No Labels Found\n";
         }
+
+        if (landmarks != null) {
+            message += "\nLandmarks:\n";
+            for (EntityAnnotation landmark : landmarks) {
+                message += String.format(Locale.US, "%.3f: %s", landmark.getScore(), landmark.getDescription());
+                message += "\n";
+            }
+        } else {
+            message += "No Landmark Detected\n";
+        }
+        if (logos != null) {
+            message += "\nLogos:\n";
+            for (EntityAnnotation logo : logos) {
+                message += String.format(Locale.US, "%.3f: %s", logo.getScore(), logo.getDescription());
+                message += "\n";
+            }
+        } else {
+            message += "No Logo Detected\n";
+        }
+        if (texts != null) {
+            message += "Text: \n\n";
+            for (EntityAnnotation text : texts) {
+                message += String.format(Locale.US, "%.3f: %s", text.getScore(), text.getDescription());
+                message += "\n";
+            }
+        } else {
+            message += "No Text Detected\n";
+        }
+
+
+        message += "Faces: \n\n";
+
+        message += "Google Search Results: \n\n";
+
+        message += "Safe Search Results: \n\n";
+
+
 
         return message;
     }
+
+
+
+
+
 }
