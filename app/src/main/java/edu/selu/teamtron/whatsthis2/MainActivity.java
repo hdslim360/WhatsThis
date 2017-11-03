@@ -241,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
                         annotateImageRequest.setFeatures(new ArrayList<Feature>() {{
                             Feature featListLabel = new Feature();
                             featListLabel.setType("LABEL_DETECTION");
-                            featListLabel.setMaxResults(5);
+                            featListLabel.setMaxResults(10);
                             add(featListLabel);
 
                             Feature featListLandmark = new Feature();
