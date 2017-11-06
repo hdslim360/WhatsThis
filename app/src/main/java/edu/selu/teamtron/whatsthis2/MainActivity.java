@@ -241,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
                         annotateImageRequest.setFeatures(new ArrayList<Feature>() {{
                             Feature featListLabel = new Feature();
                             featListLabel.setType("LABEL_DETECTION");
-                            featListLabel.setMaxResults(10);
+                            featListLabel.setMaxResults(5);
                             add(featListLabel);
 
                             Feature featListLandmark = new Feature();
@@ -304,7 +304,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Bitmap scaleBitmapDown(Bitmap bitmap, int maxDimension) {
-
+        /* rescale bitmap image vision errors with large scale images */
+        
         int originalWidth = bitmap.getWidth();
         int originalHeight = bitmap.getHeight();
         int resizedWidth = maxDimension;
