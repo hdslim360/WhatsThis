@@ -305,7 +305,7 @@ public class MainActivity extends AppCompatActivity {
 
     public Bitmap scaleBitmapDown(Bitmap bitmap, int maxDimension) {
         /* rescale bitmap image vision errors with large scale images */
-        
+
         int originalWidth = bitmap.getWidth();
         int originalHeight = bitmap.getHeight();
         int resizedWidth = maxDimension;
