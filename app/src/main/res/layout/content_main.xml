@@ -19,7 +19,7 @@
 
         <ImageView
             android:id="@+id/main_image"
-            android:layout_width="130dp"
+            android:layout_width="265dp"
             android:layout_height="150dp"
             android:clickable="false"
             android:scaleType="fitCenter" />
