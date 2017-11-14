@@ -19,9 +19,10 @@
 
         <ImageView
             android:id="@+id/main_image"
-            android:layout_width="130dp"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:clickable="false"
+            android:contentDescription="TODO"
             android:scaleType="fitCenter" />
 
         <TextView
