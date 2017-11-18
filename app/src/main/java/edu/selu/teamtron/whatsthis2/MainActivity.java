@@ -348,7 +348,7 @@ public class MainActivity extends AppCompatActivity {
                 message += "\n";
             }
         } else {
-            message += "No Landmark Detected\n";
+            message += "\n";
         }
         if (logos != null) {
             message += "\nLogos:\n";
@@ -357,7 +357,7 @@ public class MainActivity extends AppCompatActivity {
                 message += "\n";
             }
         } else {
-            message += "No Logo Detected\n";
+            message += "\n";
         }
         if (texts != null) {
             message += "Text: \n\n";
@@ -366,7 +366,7 @@ public class MainActivity extends AppCompatActivity {
                 message += "\n";
             }
         } else {
-            message += "No Text Detected\n";
+            message += "\n";
         }
 
 
