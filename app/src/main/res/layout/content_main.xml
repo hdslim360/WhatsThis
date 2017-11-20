@@ -19,7 +19,7 @@
 
         <ImageView
             android:id="@+id/main_image"
-            android:layout_width="130dp"
+            android:layout_width="265dp"
             android:layout_height="150dp"
             android:clickable="false"
             android:scaleType="fitCenter" />
@@ -35,7 +35,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:scrollbarStyle="insideOverlay">
 
     </ScrollView>
 </RelativeLayout>
