@@ -10,4 +10,10 @@
     <string name="dialog_select_gallery">Gallery</string>
 
     <string name="image_picker_error">Something is wrong with that image. Pick a different one please.</string>
+
+    <string name="facebook_app_id">136127433714517</string>
+    <string name="fb_login_protocol_scheme">fb136127433714517</string>
+
+    <string name="share">Share</string>
+
 </resources>
