@@ -90,7 +90,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar;
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+<<<<<<< HEAD
+=======
 
+>>>>>>> dde48d392cca7cd0d7b2241716da805aa72211a1
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
