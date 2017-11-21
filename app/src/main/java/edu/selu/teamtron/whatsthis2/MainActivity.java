@@ -41,18 +41,15 @@ import com.google.api.services.vision.v1.Vision;
 import com.google.api.services.vision.v1.VisionRequest;
 import com.google.api.services.vision.v1.VisionRequestInitializer;
 import com.google.api.services.vision.v1.model.AnnotateImageRequest;
-import com.google.api.services.vision.v1.model.AnnotateImageResponse;
 import com.google.api.services.vision.v1.model.BatchAnnotateImagesRequest;
 import com.google.api.services.vision.v1.model.BatchAnnotateImagesResponse;
 import com.google.api.services.vision.v1.model.EntityAnnotation;
 import com.google.api.services.vision.v1.model.Feature;
 import com.google.api.services.vision.v1.model.Image;
-import com.google.api.services.vision.v1.model.SafeSearchAnnotation;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -431,7 +428,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-            List<AnnotateImageResponse> responses = response.getResponses();
+            /*List<AnnotateImageResponse> responses = response.getResponses();
 
             for (AnnotateImageResponse res : responses) {
                 if (res.hasError()) {
@@ -439,9 +436,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Search the web for usages of the image. You could use these signals later
-                // for user input moderation or linking external references.
-                // For a full list of available annotations, see http://g.co/cloud/vision/docs
+                // Search the web for usages of the image. 
                 WebDe annotation = res.getWebDetection();
                 out.println("Entity:Id:Score");
                 out.println("===============");
@@ -463,7 +458,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-    }
+    }*/
 
 
         message += "Google Search Results: \n\n";
