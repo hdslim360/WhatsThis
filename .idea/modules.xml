@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://D:\WhatsthisCorrected\WhatsThis2\Cmps285Fall17Grp7.iml" filepath="D:\WhatsthisCorrected\WhatsThis2\Cmps285Fall17Grp7.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Cmps285Fall17Grp712345.iml" filepath="$PROJECT_DIR$/Cmps285Fall17Grp712345.iml" />
-      <module fileurl="file://C:\Users\Chad\AndroidStudioProjects\Cmps285Fall17Grp712345\WhatsThis2.iml" filepath="C:\Users\Chad\AndroidStudioProjects\Cmps285Fall17Grp712345\WhatsThis2.iml" />
+
+      <module fileurl="file://$PROJECT_DIR$/Cmps285Fall17Grp7.iml" filepath="$PROJECT_DIR$/Cmps285Fall17Grp7.iml" />
+
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
