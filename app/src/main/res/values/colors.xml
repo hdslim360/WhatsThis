@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="southeasternDarkGreen">#006b54</color>
-    <color name="southeasternLightGreen">#009e11</color>
+    <color name="southeasternDarkGreen">#006633</color>
+    <color name="southeasternLightGreen">#2c841d</color>
 </resources>
