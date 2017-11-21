@@ -19,11 +19,7 @@
 
         <ImageView
             android:id="@+id/main_image"
-
             android:layout_width="match_parent"
-
-            android:layout_width="265dp"
-
             android:layout_height="150dp"
             android:clickable="false"
             android:contentDescription="TODO"
@@ -36,12 +32,7 @@
             android:layout_marginBottom="8dp"
             android:text="Click the button below to select an image.." />
 
-        <com.facebook.share.widget.ShareButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/share_btn"
-            android:text="@string/com_facebook_share_button_text"
-            android:textAllCaps="true"/>
+        
 
 
     </LinearLayout>
