@@ -491,6 +491,41 @@ public class MainActivity extends AppCompatActivity {
 
         message += "Faces: \n\n";
 
+
+
+            /*List<AnnotateImageResponse> responses = response.getResponses();
+
+            for (AnnotateImageResponse res : responses) {
+                if (res.hasError()) {
+                    message = ("Error: %s\n", res.getError().getMessage());
+                    return;
+                }
+
+                // Search the web for usages of the image. 
+                WebDe annotation = res.getWebDetection();
+                out.println("Entity:Id:Score");
+                out.println("===============");
+                for (WebEntity entity : annotation.getWebEntitiesList()) {
+                    out.println(entity.getDescription() + " : " + entity.getEntityId() + " : "
+                            + entity.getScore());
+                }
+                out.println("\nPages with matching images: Score\n==");
+                for (WebPage page : annotation.getPagesWithMatchingImagesList()) {
+                    out.println(page.getUrl() + " : " + page.getScore());
+                }
+                out.println("\nPages with partially matching images: Score\n==");
+                for (WebImage image : annotation.getPartialMatchingImagesList()) {
+                    out.println(image.getUrl() + " : " + image.getScore());
+                }
+                out.println("\nPages with fully matching images: Score\n==");
+                for (WebImage image : annotation.getFullMatchingImagesList()) {
+                    out.println(image.getUrl() + " : " + image.getScore());
+                }
+            }
+        }
+    }*/
+
+
         message += "Google Search Results: \n\n";
 
         message += "Safe Search Results: \n\n";
