@@ -32,7 +32,7 @@
             android:layout_marginBottom="8dp"
             android:text="Click the button below to select an image.." />
 
-        
+
 
 
     </LinearLayout>
@@ -45,14 +45,7 @@
         android:scrollbarStyle="insideOverlay">
 
 
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/login_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="top|right|center_horizontal"
-            android:layout_marginBottom="30dp"
-            android:layout_marginTop="30dp"/>
+
 
 
 
