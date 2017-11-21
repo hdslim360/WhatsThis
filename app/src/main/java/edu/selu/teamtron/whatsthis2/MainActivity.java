@@ -30,6 +30,9 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -143,7 +146,69 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-       
+        // Finding the facebook share button
+        ShareButton shareButton = (ShareButton)findViewById(R.id.fb_share_button);
+        SharePhoto photo = new SharePhoto.Builder().setBitmap(image).build();
+        SharePhotoContent content = new SharePhotoContent.Builder().addPhoto(photo).build();
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                postPicture();
+
+            }
+        });
+
+        shareButton.setShareContent(content);
+
+    }
+
+    public void postPicture()
+    {
+        //check counter
+        if(counter == 0)
+        {
+            //save the screenshot
+            View rootView = findViewById(android.R.id.content).getRootView();
+            rootView.setDrawingCacheEnabled(true);
+
+            //creates immutable clone of image
+
+            image = Bitmap.createBitmap(rootView.getDrawingCache());
+
+            //destroy
+            rootView.destroyDrawingCache();
+
+
+            //share dialog
+            AlertDialog.Builder shareDialog = new AlertDialog.Builder(this);
+            shareDialog.setTitle("Share Screen Shot");
+            shareDialog.setMessage("Share image to Facebook?");
+            shareDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    // share the image to Facebook
+                    SharePhoto photo = new SharePhoto.Builder().setBitmap(image).build();
+                    SharePhotoContent content = new SharePhotoContent.Builder().addPhoto(photo).build();
+                    shareButton.setShareContent(content);
+                    counter = 1;
+                    shareButton.performClick();
+                }
+            });
+            shareDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            shareDialog.show();
+        }
+        else
+        {
+            counter = 0;
+            shareButton.setShareContent(null);
+        }
+
 
     }
 
