@@ -7,6 +7,8 @@
     android:fitsSystemWindows="true"
     tools:context="edu.selu.teamtron.whatsthis2.MainActivity">
 
+
+
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
@@ -17,8 +19,11 @@
         android:layout_marginTop="50dp"
         android:layout_marginRight="10dp"/>
 
-    <com.facebook.share.widget.ShareButton
-        android:id="@+id/fb_share_button"
+
+
+
+    <Button
+        android:id="@+id/share_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

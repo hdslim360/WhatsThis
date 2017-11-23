@@ -4,9 +4,16 @@ package edu.selu.teamtron.whatsthis2;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,15 +21,19 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Log;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -30,6 +41,8 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareContent;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
@@ -50,12 +63,20 @@ import com.google.api.services.vision.v1.model.EntityAnnotation;
 import com.google.api.services.vision.v1.model.Feature;
 import com.google.api.services.vision.v1.model.Image;
 
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import static android.provider.Telephony.Mms.Part.FILENAME;
 
 public class MainActivity extends AppCompatActivity {
     private static final String CLOUD_VISION_API_KEY = "AIzaSyCKYPnFgzmkkEOu4wtJ4_3xneJszDbSqlM";
@@ -74,14 +95,12 @@ public class MainActivity extends AppCompatActivity {
 
     private LoginButton loginButton;
     private CallbackManager callbackManager;
-    private ShareDialog shareDialog;
 
-    //share button to share the screenshot image to facebook
-    private ShareButton shareButton;
-    // screenshot image to be shared on facebook
-    private Bitmap image;
-    // counter
-    private int counter = 0;
+    private Button fullPageScreenshot, customPageScreenshot;
+    private LinearLayout rootContent;
+    private ImageView imageView;
+    private TextView hiddenText;
+
 
 
 
@@ -91,8 +110,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
+
+
+
         Toolbar toolbar;
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        Log.i(DEBUG_TAG, "In the onCreate() method of the WhatsThisAPPActivity Class");
+        Log.d(TAG, "onCreate(Bundle) called");
 
         setSupportActionBar(toolbar);
 
@@ -123,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         mMainImage = (ImageView) findViewById(R.id.main_image);
 
         loginButton = (LoginButton)findViewById(R.id.login_button);
-        loginButton.setReadPermissions("email", "public_profile");
+        loginButton.setReadPermissions("email");
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -146,73 +171,60 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        // Finding the facebook share button
-        ShareButton shareButton = (ShareButton)findViewById(R.id.fb_share_button);
-        SharePhoto photo = new SharePhoto.Builder().setBitmap(image).build();
-        SharePhotoContent content = new SharePhotoContent.Builder().addPhoto(photo).build();
-        shareButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                postPicture();
+                Button button = (Button)findViewById(R.id.share_btn);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-            }
-        });
 
-        shareButton.setShareContent(content);
+                    }
+                });
 
     }
 
-    public void postPicture()
+
+
+
+
+    //This class will be used for debugging
+    public static final String DEBUG_TAG= "WhatsThisAppLogging";
+    //private static final String TAG = "MainActivity";
+
+    @Override
+    public void onStart()
     {
-        //check counter
-        if(counter == 0)
-        {
-            //save the screenshot
-            View rootView = findViewById(android.R.id.content).getRootView();
-            rootView.setDrawingCacheEnabled(true);
+        super.onStart();
 
-            //creates immutable clone of image
-
-            image = Bitmap.createBitmap(rootView.getDrawingCache());
-
-            //destroy
-            rootView.destroyDrawingCache();
-
-
-            //share dialog
-            AlertDialog.Builder shareDialog = new AlertDialog.Builder(this);
-            shareDialog.setTitle("Share Screen Shot");
-            shareDialog.setMessage("Share image to Facebook?");
-            shareDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                    // share the image to Facebook
-                    SharePhoto photo = new SharePhoto.Builder().setBitmap(image).build();
-                    SharePhotoContent content = new SharePhotoContent.Builder().addPhoto(photo).build();
-                    shareButton.setShareContent(content);
-                    counter = 1;
-                    shareButton.performClick();
-                }
-            });
-            shareDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-            shareDialog.show();
-        }
-        else
-        {
-            counter = 0;
-            shareButton.setShareContent(null);
-        }
-
-
+        Log.d(DEBUG_TAG, "onStart() called");
     }
 
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        Log.d(DEBUG_TAG, "onResume() called");
+    }
 
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        Log.d(DEBUG_TAG, "onPause() called");
+    }
+
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        Log.d(DEBUG_TAG, "onStop() called");
+    }
+
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        Log.d(DEBUG_TAG, "onDestroy() called");
+    }
 
 
     public void startGalleryChooser() {
