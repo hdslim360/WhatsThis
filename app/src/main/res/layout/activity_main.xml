@@ -8,6 +8,18 @@
     tools:context="edu.selu.teamtron.whatsthis2.MainActivity">
 
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+
+        >
+
+    </ImageView>
+
+    <!-- commenting out the facebook login button
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
@@ -19,6 +31,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginRight="10dp"/>
 
+    -->
 
 
 

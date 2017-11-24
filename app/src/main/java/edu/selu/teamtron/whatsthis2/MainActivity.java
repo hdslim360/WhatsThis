@@ -101,6 +101,14 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
     private TextView hiddenText;
 
+    Button shareButton;
+    ImageView ScreenShotHold;
+    Bitmap bitmap;
+    View view;
+    ByteArrayOutputStream bytearrayoutputstream;
+    File file;
+    FileOutputStream fileoutputstream;
+
 
 
 
@@ -146,8 +154,12 @@ public class MainActivity extends AppCompatActivity {
 
         mImageDetails = (TextView) findViewById(R.id.image_details);
         mMainImage = (ImageView) findViewById(R.id.main_image);
-
-        loginButton = (LoginButton)findViewById(R.id.login_button);
+        //
+        //
+        //Facebook Login Button Temperarily removed
+        //
+        //
+        /*loginButton = (LoginButton)findViewById(R.id.login_button);
         loginButton.setReadPermissions("email");
 
         callbackManager = CallbackManager.Factory.create();
@@ -170,15 +182,57 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-
-                Button button = (Button)findViewById(R.id.share_btn);
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+        */
 
 
-                    }
-                });
+        shareButton = (Button)findViewById(R.id.share_btn);
+
+        ScreenShotHold = (ImageView)findViewById(R.id.imageView);
+
+        bytearrayoutputstream = new ByteArrayOutputStream();
+
+        shareButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View OnclickView) {
+
+                view = OnclickView.getRootView();
+
+                view.setDrawingCacheEnabled(true);
+
+                bitmap = view.getDrawingCache();
+
+                ScreenShotHold.setImageBitmap(bitmap);
+
+                bitmap.compress(Bitmap.CompressFormat.PNG, 60, bytearrayoutputstream);
+                File path = Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_PICTURES);
+                file = new File(path, "DemoPicture.jpg");
+                try
+                {
+                    file.createNewFile();
+                    fileoutputstream = new FileOutputStream(file);
+                    fileoutputstream.write(bytearrayoutputstream.toByteArray());
+                    fileoutputstream.close();
+
+
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                Uri screenshotUri = Uri.parse("android.resource://" + getPackageName()
+                        + "/drawable/" + "ic_launcher");
+                sharingIntent.setAction(Intent.ACTION_SEND);
+
+                sharingIntent.setType("image/jpeg");
+                sharingIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
+                sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                startActivity(Intent.createChooser(sharingIntent, "Share image using"));
+            }
+        });
 
     }
 
