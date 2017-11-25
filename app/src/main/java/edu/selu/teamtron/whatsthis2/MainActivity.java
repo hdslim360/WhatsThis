@@ -20,13 +20,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.facebook.CallbackManager;
 import com.facebook.login.widget.LoginButton;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -89,13 +89,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar;
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+       // Toolbar toolbar;
+        //toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         Log.i(DEBUG_TAG, "In the onCreate() method of the WhatsThisAPPActivity Class");
         Log.d(TAG, "onCreate(Bundle) called");
 
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
