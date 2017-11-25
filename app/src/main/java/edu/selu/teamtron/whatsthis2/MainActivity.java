@@ -436,7 +436,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Search the web for usages of the image. 
+                // Search the web for usages of the image.
                 WebDe annotation = res.getWebDetection();
                 out.println("Entity:Id:Score");
                 out.println("===============");
