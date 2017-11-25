@@ -7,6 +7,20 @@
     android:fitsSystemWindows="true"
     tools:context="edu.selu.teamtron.whatsthis2.MainActivity">
 
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+
+        >
+
+    </ImageView>
+
+    <!-- commenting out the facebook login button
+
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
@@ -16,6 +30,21 @@
         android:layout_marginBottom="15dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="10dp"/>
+
+    -->
+
+
+
+    <Button
+        android:id="@+id/share_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="bottom|left|center_horizontal"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:text="@string/share"
+        android:textAllCaps="true"/>
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
