@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     Bitmap bitmap;
     View view;
     ByteArrayOutputStream bytearrayoutputstream;
-    File file;
+
     FileOutputStream fileoutputstream;
     private static final String LOG_TAG = "getAlbumStorageDir";
 
@@ -152,6 +152,8 @@ public class MainActivity extends AppCompatActivity {
 
         shareButton = (Button)findViewById(R.id.share_btn);
 
+        // -- I commented out the screen shot image view
+
        //  ScreenShotHold = (ImageView)findViewById(R.id.imageView);
 
         bytearrayoutputstream = new ByteArrayOutputStream();
@@ -171,7 +173,10 @@ public class MainActivity extends AppCompatActivity {
 
 
                 String foldername = "WhatsThis";
+
                 mkFolder(foldername);
+
+                File file = mkFolder(foldername);
 
 
                 try
@@ -205,46 +210,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
-    public int mkFolder(String folderName){ // make a folder under Environment.DIRECTORY_DCIM
+    public File mkFolder(String folderName){ // make a folder under Environment.DIRECTORY_DCIM
         String state = Environment.getExternalStorageState();
+        int result = 0;
         if (!Environment.MEDIA_MOUNTED.equals(state)){
             Log.d("myAppName", "Error: external storage is unavailable");
-            return 0;
+            result = 0;
         }
         if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
             Log.d("myAppName", "Error: external storage is read only.");
-            return 0;
+            result = 0;
         }
         Log.d("myAppName", "External storage is not read only or unavailable");
 
-        if (ContextCompat.checkSelfPermission(this, // request permission when it is not granted.
-                Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            Log.d("myAppName", "permission:WRITE_EXTERNAL_STORAGE: NOT granted!");
-            // Should we show an explanation?
-            
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
-            } else {
-
-                // No explanation needed, we can request the permission.
-
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
-            }
-        }
         File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),folderName);
-        int result = 0;
+
         if (folder.exists()) {
             Log.d("myAppName","folder exist:"+folder.toString());
             result = 2; // folder exist
@@ -261,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
                 ecp.printStackTrace();
             }
         }
-        return result;
+        return folder;
     }
 
 

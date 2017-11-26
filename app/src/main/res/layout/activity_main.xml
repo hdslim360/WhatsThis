@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     tools:context="edu.selu.teamtron.whatsthis2.MainActivity">
 
-
+<!--
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="fill_parent"
@@ -18,7 +18,7 @@
         >
 
     </ImageView>
-
+-->
     <!-- commenting out the facebook login button
 
     <com.facebook.login.widget.LoginButton
