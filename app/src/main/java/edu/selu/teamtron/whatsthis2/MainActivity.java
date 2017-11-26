@@ -222,6 +222,7 @@ public class MainActivity extends AppCompatActivity {
                 != PackageManager.PERMISSION_GRANTED) {
             Log.d("myAppName", "permission:WRITE_EXTERNAL_STORAGE: NOT granted!");
             // Should we show an explanation?
+            
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
