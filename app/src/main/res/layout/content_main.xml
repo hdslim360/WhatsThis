@@ -29,8 +29,7 @@
             android:id="@+id/image_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Click the button below to select an image.." />
+            android:layout_marginBottom="8dp" />
 
 
 
