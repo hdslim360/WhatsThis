@@ -6,6 +6,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -14,27 +15,20 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.facebook.share.model.ShareLinkContent;
-import com.facebook.share.model.SharePhoto;
-import com.facebook.share.model.SharePhotoContent;
-import com.facebook.share.widget.ShareButton;
-import com.facebook.share.widget.ShareDialog;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpTransport;
@@ -52,10 +46,12 @@ import com.google.api.services.vision.v1.model.Image;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
 
 public class MainActivity extends AppCompatActivity {
     private static final String CLOUD_VISION_API_KEY = "AIzaSyCKYPnFgzmkkEOu4wtJ4_3xneJszDbSqlM";
@@ -74,14 +70,16 @@ public class MainActivity extends AppCompatActivity {
 
     private LoginButton loginButton;
     private CallbackManager callbackManager;
-    private ShareDialog shareDialog;
 
-    //share button to share the screenshot image to facebook
-    private ShareButton shareButton;
-    // screenshot image to be shared on facebook
-    private Bitmap image;
-    // counter
-    private int counter = 0;
+
+    Button shareButton;
+    //ImageView ScreenShotHold;
+    Bitmap bitmap;
+    View view;
+    ByteArrayOutputStream bytearrayoutputstream;
+    File file;
+    FileOutputStream fileoutputstream;
+    private static final String LOG_TAG = "getAlbumStorageDir";
 
 
 
@@ -89,14 +87,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
-        Toolbar toolbar;
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        setSupportActionBar(toolbar);
+        // Toolbar toolbar;
+        //toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Log.i(DEBUG_TAG, "In the onCreate() method of the WhatsThisAPPActivity Class");
+        Log.d(TAG, "onCreate(Bundle) called");
+        //setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,9 +120,12 @@ public class MainActivity extends AppCompatActivity {
 
         mImageDetails = (TextView) findViewById(R.id.image_details);
         mMainImage = (ImageView) findViewById(R.id.main_image);
-
-        loginButton = (LoginButton)findViewById(R.id.login_button);
-        loginButton.setReadPermissions("email", "public_profile");
+        //
+        //
+        //Facebook Login Button Temperarily removed
+        //
+        /*loginButton = (LoginButton)findViewById(R.id.login_button);
+        loginButton.setReadPermissions("email");
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -145,74 +147,165 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
+        */
 
-        // Finding the facebook share button
-        ShareButton shareButton = (ShareButton)findViewById(R.id.fb_share_button);
-        SharePhoto photo = new SharePhoto.Builder().setBitmap(image).build();
-        SharePhotoContent content = new SharePhotoContent.Builder().addPhoto(photo).build();
+
+        shareButton = (Button)findViewById(R.id.share_btn);
+
+       //  ScreenShotHold = (ImageView)findViewById(R.id.imageView);
+
+        bytearrayoutputstream = new ByteArrayOutputStream();
+
         shareButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                postPicture();
 
+            @Override
+            public void onClick(View OnclickView) {
+
+                view = OnclickView.getRootView();
+
+                view.setDrawingCacheEnabled(true);
+
+                bitmap = view.getDrawingCache();
+
+               // ScreenShotHold.setImageBitmap(bitmap);
+
+
+                String foldername = "WhatsThis";
+                mkFolder(foldername);
+
+
+                try
+                {
+                    file.createNewFile();
+                    fileoutputstream = new FileOutputStream(file);
+                    fileoutputstream.write(bytearrayoutputstream.toByteArray());
+                    fileoutputstream.close();
+                    Log.d("WhatsThisApp","Screenshot Saved!");
+
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                    Log.d("WhatsThisApp","Screenshot not Saved!");
+                }
+
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                Uri screenshotUri = Uri.parse("android.resource://" + getPackageName()
+                        + "/drawable/" + "ic_launcher");
+                sharingIntent.setAction(Intent.ACTION_SEND);
+
+                sharingIntent.setType("image/jpeg");
+                sharingIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
+                sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                startActivity(Intent.createChooser(sharingIntent, "Share image using"));
             }
         });
 
-        shareButton.setShareContent(content);
-
     }
 
-    public void postPicture()
+
+    public static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
+    public int mkFolder(String folderName){ // make a folder under Environment.DIRECTORY_DCIM
+        String state = Environment.getExternalStorageState();
+        if (!Environment.MEDIA_MOUNTED.equals(state)){
+            Log.d("myAppName", "Error: external storage is unavailable");
+            return 0;
+        }
+        if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+            Log.d("myAppName", "Error: external storage is read only.");
+            return 0;
+        }
+        Log.d("myAppName", "External storage is not read only or unavailable");
+
+        if (ContextCompat.checkSelfPermission(this, // request permission when it is not granted.
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            Log.d("myAppName", "permission:WRITE_EXTERNAL_STORAGE: NOT granted!");
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        }
+        File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),folderName);
+        int result = 0;
+        if (folder.exists()) {
+            Log.d("myAppName","folder exist:"+folder.toString());
+            result = 2; // folder exist
+        }else{
+            try {
+                if (folder.mkdirs()) {
+                    Log.d("myAppName", "folder created:" + folder.toString());
+                    result = 1; // folder created
+                } else {
+                    Log.d("myAppName", "creat folder fails:" + folder.toString());
+                    result = 0; // creat folder fails
+                }
+            }catch (Exception ecp){
+                ecp.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+
+
+
+
+    //This class will be used for debugging
+    public static final String DEBUG_TAG= "WhatsThisAppLogging";
+    //private static final String TAG = "MainActivity";
+
+    @Override
+    public void onStart()
     {
-        //check counter
-        if(counter == 0)
-        {
-            //save the screenshot
-            View rootView = findViewById(android.R.id.content).getRootView();
-            rootView.setDrawingCacheEnabled(true);
+        super.onStart();
 
-            //creates immutable clone of image
-
-            image = Bitmap.createBitmap(rootView.getDrawingCache());
-
-            //destroy
-            rootView.destroyDrawingCache();
-
-
-            //share dialog
-            AlertDialog.Builder shareDialog = new AlertDialog.Builder(this);
-            shareDialog.setTitle("Share Screen Shot");
-            shareDialog.setMessage("Share image to Facebook?");
-            shareDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                    // share the image to Facebook
-                    SharePhoto photo = new SharePhoto.Builder().setBitmap(image).build();
-                    SharePhotoContent content = new SharePhotoContent.Builder().addPhoto(photo).build();
-                    shareButton.setShareContent(content);
-                    counter = 1;
-                    shareButton.performClick();
-                }
-            });
-            shareDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-            shareDialog.show();
-        }
-        else
-        {
-            counter = 0;
-            shareButton.setShareContent(null);
-        }
-
-
+        Log.d(DEBUG_TAG, "onStart() called");
     }
 
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        Log.d(DEBUG_TAG, "onResume() called");
+    }
 
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        Log.d(DEBUG_TAG, "onPause() called");
+    }
+
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        Log.d(DEBUG_TAG, "onStop() called");
+    }
+
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        Log.d(DEBUG_TAG, "onDestroy() called");
+    }
 
 
     public void startGalleryChooser() {
@@ -249,7 +342,12 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+
+        //
+        // -- Comented out this code for the Facebook connect button.
+        // -- If this code is not commented out while the facebook login is commented out, then the app will crash when selecting a photo from gallary to upload to vision.
+        //
+        //callbackManager.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == GALLERY_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
             uploadImage(data.getData());
@@ -501,7 +599,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Search the web for usages of the image. 
+                // Search the web for usages of the image.
                 WebDe annotation = res.getWebDetection();
                 out.println("Entity:Id:Score");
                 out.println("===============");

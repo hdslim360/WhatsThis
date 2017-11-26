@@ -7,6 +7,20 @@
     android:fitsSystemWindows="true"
     tools:context="edu.selu.teamtron.whatsthis2.MainActivity">
 
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+
+        >
+
+    </ImageView>
+
+    <!-- commenting out the facebook login button
+
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
@@ -17,8 +31,12 @@
         android:layout_marginTop="50dp"
         android:layout_marginRight="10dp"/>
 
-    <com.facebook.share.widget.ShareButton
-        android:id="@+id/fb_share_button"
+    -->
+
+
+
+    <Button
+        android:id="@+id/share_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -33,14 +51,6 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/southeasternDarkGreen"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-
 
     </android.support.design.widget.AppBarLayout>
 
@@ -48,7 +58,7 @@
         android:id="@+id/include"
         layout="@layout/content_main"
         android:layout_width="384dp"
-        android:layout_height="512dp"/>
+        android:layout_height="569dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
