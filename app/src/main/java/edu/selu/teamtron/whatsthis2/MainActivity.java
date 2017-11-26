@@ -154,7 +154,9 @@ public class MainActivity extends AppCompatActivity {
 
         shareButton = (Button)findViewById(R.id.share_btn);
 
+
         //ScreenShotHold = (ImageView)findViewById(R.id.imageView);
+
 
         bytearrayoutputstream = new ByteArrayOutputStream();
 
@@ -169,7 +171,11 @@ public class MainActivity extends AppCompatActivity {
 
                 bitmap = view.getDrawingCache();
 
+
+              
+
                 //ScreenShotHold.setImageBitmap(bitmap);
+
 
 
                 String foldername = "WhatsThis";
