@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+    <string name="app_name">Camera2Basic</string>
+    <string name="intro_message">
+        <![CDATA[
+        
+            
+<<<<<<< HEAD
+            Info
+=======
+            This sample demonstrates the basic use of Camera2 API. Check the source code to see how
+            you can display camera preview and take pictures.
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
+            
+        
+        ]]>
+    </string>
+</resources>

@@ -1,0 +1,59 @@
+[
+    {
+        "merged": "C:\\Users\\Chad\\AndroidStudioProjects\\WorkingCamera\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\Chad\\.android\\build-cache\\a7e16fc7fe55c8acb19e8d2b035a8008e290d37b\\output\\res\\layout-v21\\notification_action_tombstone.xml"
+    },
+    {
+<<<<<<< HEAD
+=======
+        "merged": "C:\\GIT_ROOT\\Cmps285Fall17Grp7\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\Admin\\.android\\build-cache\\60f3de5260a58623496d2ed17d46ca53ef6bed2a\\output\\res\\layout-v21\\notification_action_tombstone.xml"
+    },
+    {
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
+        "merged": "C:\\Users\\Chad\\AndroidStudioProjects\\Cmps285Fall17Grp7\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action.xml",
+        "source": "C:\\Users\\Chad\\.android\\build-cache\\a7e16fc7fe55c8acb19e8d2b035a8008e290d37b\\output\\res\\layout-v21\\notification_action.xml"
+    },
+    {
+        "merged": "C:\\Users\\Chad\\AndroidStudioProjects\\Cmps285Fall17Grp7\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\Chad\\.android\\build-cache\\a7e16fc7fe55c8acb19e8d2b035a8008e290d37b\\output\\res\\layout-v21\\notification_template_custom_big.xml"
+    },
+    {
+        "merged": "C:\\Users\\Chad\\AndroidStudioProjects\\Cmps285Fall17Grp7\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\Chad\\.android\\build-cache\\a7e16fc7fe55c8acb19e8d2b035a8008e290d37b\\output\\res\\layout-v21\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "C:\\Users\\Chad\\AndroidStudioProjects\\WorkingCamera\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\Chad\\.android\\build-cache\\a7e16fc7fe55c8acb19e8d2b035a8008e290d37b\\output\\res\\layout-v21\\notification_template_custom_big.xml"
+    },
+    {
+<<<<<<< HEAD
+=======
+        "merged": "C:\\GIT_ROOT\\Cmps285Fall17Grp7\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\Admin\\.android\\build-cache\\60f3de5260a58623496d2ed17d46ca53ef6bed2a\\output\\res\\layout-v21\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "C:\\GIT_ROOT\\Cmps285Fall17Grp7\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\Admin\\.android\\build-cache\\60f3de5260a58623496d2ed17d46ca53ef6bed2a\\output\\res\\layout-v21\\notification_template_custom_big.xml"
+    },
+    {
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
+        "merged": "C:\\Users\\Chad\\AndroidStudioProjects\\WorkingCamera\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action.xml",
+        "source": "C:\\Users\\Chad\\.android\\build-cache\\a7e16fc7fe55c8acb19e8d2b035a8008e290d37b\\output\\res\\layout-v21\\notification_action.xml"
+    },
+    {
+<<<<<<< HEAD
+=======
+        "merged": "C:\\GIT_ROOT\\Cmps285Fall17Grp7\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action.xml",
+        "source": "C:\\Users\\Admin\\.android\\build-cache\\60f3de5260a58623496d2ed17d46ca53ef6bed2a\\output\\res\\layout-v21\\notification_action.xml"
+    },
+    {
+>>>>>>> 8f8e2dfac08cd430a399bb13b1984e65cfb1ce4c
+        "merged": "C:\\Users\\Chad\\AndroidStudioProjects\\Cmps285Fall17Grp7\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\Chad\\.android\\build-cache\\a7e16fc7fe55c8acb19e8d2b035a8008e290d37b\\output\\res\\layout-v21\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "C:\\Users\\Chad\\AndroidStudioProjects\\WorkingCamera\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\Chad\\.android\\build-cache\\a7e16fc7fe55c8acb19e8d2b035a8008e290d37b\\output\\res\\layout-v21\\notification_template_icon_group.xml"
+    }
+]

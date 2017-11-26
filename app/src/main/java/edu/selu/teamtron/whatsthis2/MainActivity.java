@@ -20,13 +20,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.facebook.CallbackManager;
 import com.facebook.login.widget.LoginButton;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     Bitmap bitmap;
     View view;
     ByteArrayOutputStream bytearrayoutputstream;
-    File file;
+    //File file;
     FileOutputStream fileoutputstream;
     private static final String LOG_TAG = "getAlbumStorageDir";
 
@@ -89,13 +89,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // Toolbar toolbar;
-        //toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar;
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         Log.i(DEBUG_TAG, "In the onCreate() method of the WhatsThisAPPActivity Class");
         Log.d(TAG, "onCreate(Bundle) called");
 
-        //setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -154,7 +154,9 @@ public class MainActivity extends AppCompatActivity {
 
         shareButton = (Button)findViewById(R.id.share_btn);
 
-       //  ScreenShotHold = (ImageView)findViewById(R.id.imageView);
+
+        //ScreenShotHold = (ImageView)findViewById(R.id.imageView);
+
 
         bytearrayoutputstream = new ByteArrayOutputStream();
 
@@ -169,27 +171,30 @@ public class MainActivity extends AppCompatActivity {
 
                 bitmap = view.getDrawingCache();
 
-               // ScreenShotHold.setImageBitmap(bitmap);
+
+              
+
+                //ScreenShotHold.setImageBitmap(bitmap);
+
 
 
                 String foldername = "WhatsThis";
                 mkFolder(foldername);
+                File file = new File(String.valueOf(mkFolder(foldername)));
 
 
-                try
-                {
-                    file.createNewFile();
-                    fileoutputstream = new FileOutputStream(file);
-                    fileoutputstream.write(bytearrayoutputstream.toByteArray());
-                    fileoutputstream.close();
-                    Log.d("WhatsThisApp","Screenshot Saved!");
+                    try {
+                        FileOutputStream out = new FileOutputStream(file);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+                        out.flush();
+                        out.close();
+                        Log.d("WhatsThisApp", "Screenshot Saved!");
 
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                    Log.d("WhatsThisApp","Screenshot not Saved!");
-                }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.d("WhatsThisApp", "Screenshot not Saved!");
+                    }
+
 
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 Uri screenshotUri = Uri.parse("android.resource://" + getPackageName()
@@ -207,15 +212,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
-    public int mkFolder(String folderName){ // make a folder under Environment.DIRECTORY_DCIM
+    public File mkFolder(String folderName){ // make a folder under Environment.DIRECTORY_PICTURE
         String state = Environment.getExternalStorageState();
+        int result;
+
         if (!Environment.MEDIA_MOUNTED.equals(state)){
             Log.d("myAppName", "Error: external storage is unavailable");
-            return 0;
+            result = 0;
         }
         if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
             Log.d("myAppName", "Error: external storage is read only.");
-            return 0;
+            result = 0;
         }
         Log.d("myAppName", "External storage is not read only or unavailable");
 
@@ -245,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),folderName);
-        int result = 0;
+         result = 0;
         if (folder.exists()) {
             Log.d("myAppName","folder exist:"+folder.toString());
             result = 2; // folder exist
@@ -262,7 +269,9 @@ public class MainActivity extends AppCompatActivity {
                 ecp.printStackTrace();
             }
         }
-        return result;
+        return folder;
+
+
     }
 
 
@@ -601,7 +610,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Search the web for usages of the image.
+                // Search the web for usages of the image. 
                 WebDe annotation = res.getWebDetection();
                 out.println("Entity:Id:Score");
                 out.println("===============");
