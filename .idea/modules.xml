@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Cmps285Fall17Grp7.iml" filepath="$PROJECT_DIR$/Cmps285Fall17Grp7.iml" />
-      <module fileurl="file://C:\GIT_ROOT\Cmps285Fall17Grp7\WhatsThis2.iml" filepath="C:\GIT_ROOT\Cmps285Fall17Grp7\WhatsThis2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
