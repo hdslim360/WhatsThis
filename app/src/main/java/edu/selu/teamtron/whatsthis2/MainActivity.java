@@ -4,10 +4,12 @@ package edu.selu.teamtron.whatsthis2;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -46,6 +48,7 @@ import com.google.api.services.vision.v1.model.Image;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -156,6 +159,8 @@ public class MainActivity extends AppCompatActivity {
 
        //  ScreenShotHold = (ImageView)findViewById(R.id.imageView);
 
+        final Activity activity = (MainActivity) this;
+
         bytearrayoutputstream = new ByteArrayOutputStream();
 
         shareButton.setOnClickListener(new View.OnClickListener() {
@@ -163,36 +168,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View OnclickView) {
 
-                view = OnclickView.getRootView();
-
-                view.setDrawingCacheEnabled(true);
-
-                bitmap = view.getDrawingCache();
-
-               // ScreenShotHold.setImageBitmap(bitmap);
-
-
-                String foldername = "WhatsThis";
-
-                mkFolder(foldername);
-
-                File file = mkFolder(foldername);
-
-
-                try
-                {
-                    file.createNewFile();
-                    fileoutputstream = new FileOutputStream(file);
-                    fileoutputstream.write(bytearrayoutputstream.toByteArray());
-                    fileoutputstream.close();
-                    Log.d("WhatsThisApp","Screenshot Saved!");
-
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                    Log.d("WhatsThisApp","Screenshot not Saved!");
-                }
+                Bitmap bitmap = takeScreenShot(activity);
+                saveBitmap(bitmap);
 
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 Uri screenshotUri = Uri.parse("android.resource://" + getPackageName()
@@ -205,6 +182,44 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(Intent.createChooser(sharingIntent, "Share image using"));
             }
         });
+
+    }
+
+    private static Bitmap takeScreenShot(Activity activity) {
+        View view = activity.getWindow().getDecorView();
+        view.setDrawingCacheEnabled(true);
+        view.buildDrawingCache();
+        Bitmap b1 = view.getDrawingCache();
+        Rect frame = new Rect();
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+        int statusBarHeight = frame.top;
+        int width = activity.getWindowManager().getDefaultDisplay().getWidth();
+        int height = activity.getWindowManager().getDefaultDisplay()
+                .getHeight();
+
+        Bitmap b = Bitmap.createBitmap(b1, 0, statusBarHeight, width, height
+                - statusBarHeight);
+        view.destroyDrawingCache();
+        Log.e("Screenshot", "taken successfully");
+        return b;
+
+    }
+
+    public void saveBitmap(Bitmap bitmap) {
+        File imagePath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"WhatsThisApp");
+        FileOutputStream fos;
+        try {
+            fos = new FileOutputStream(imagePath);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            Log.e("Screenshot", "saved successfully");
+
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            Log.e("GREC", e.getMessage(), e);
+        } catch (IOException e) {
+            Log.e("GREC", e.getMessage(), e);
+        }
 
     }
 
