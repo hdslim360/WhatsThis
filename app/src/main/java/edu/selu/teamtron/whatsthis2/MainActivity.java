@@ -1,13 +1,11 @@
 package edu.selu.teamtron.whatsthis2;
 
 
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -17,8 +15,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -545,6 +541,7 @@ public class MainActivity extends AppCompatActivity {
         List<EntityAnnotation> logos = response.getResponses().get(0).getLogoAnnotations();
         List<EntityAnnotation> texts = response.getResponses().get(0).getTextAnnotations();
 
+
         if (labels != null) {
             message += "Labels: \n";
             for (EntityAnnotation label : labels) {
@@ -552,7 +549,7 @@ public class MainActivity extends AppCompatActivity {
                 message += "\n";
             }
         } else {
-            message += "No Labels Found\n";
+            message += "\n";
         }
 
         if (landmarks != null) {
@@ -583,55 +580,50 @@ public class MainActivity extends AppCompatActivity {
             message += "\n";
         }
 
-
-        message += "Faces: \n\n";
-
-
-
-            /*List<AnnotateImageResponse> responses = response.getResponses();
-
-            for (AnnotateImageResponse res : responses) {
-                if (res.hasError()) {
-                    message = ("Error: %s\n", res.getError().getMessage());
-                    return;
-                }
-
-                // Search the web for usages of the image.
-                WebDe annotation = res.getWebDetection();
-                out.println("Entity:Id:Score");
-                out.println("===============");
-                for (WebEntity entity : annotation.getWebEntitiesList()) {
-                    out.println(entity.getDescription() + " : " + entity.getEntityId() + " : "
-                            + entity.getScore());
-                }
-                out.println("\nPages with matching images: Score\n==");
-                for (WebPage page : annotation.getPagesWithMatchingImagesList()) {
-                    out.println(page.getUrl() + " : " + page.getScore());
-                }
-                out.println("\nPages with partially matching images: Score\n==");
-                for (WebImage image : annotation.getPartialMatchingImagesList()) {
-                    out.println(image.getUrl() + " : " + image.getScore());
-                }
-                out.println("\nPages with fully matching images: Score\n==");
-                for (WebImage image : annotation.getFullMatchingImagesList()) {
-                    out.println(image.getUrl() + " : " + image.getScore());
-                }
-            }
-        }
-    }*/
-
-
         message += "Google Search Results: \n\n";
 
-        message += "Safe Search Results: \n\n";
+           /*string searchRE = response.toString();
+
+            Scanner s = new Scanner(searchRE);
+            StringBuilder builder = new StringBuilder();
+            s.findInLine("\"webEntities\":");
+            //message+=builder.toString();
 
 
+            for (int i = 0; i < 5; i++) {
 
+                s.findInLine("\"entityId\":");
+
+                s.findInLine("\"description:\":");
+
+                builder.append(s.next());
+                message += i;
+
+            }
+            message += builder.toString();
+
+        */
         return message;
     }
 
+    /*private String parseJson(String s) {
+        StringBuilder builder = new StringBuilder();
+        String jsonStrg;
+        try {
+            JSONObject root = new JSONObject(s);
+            JSONObject Web = root.getJSONObject("webDetection");
+            JSONArray entities = Web.getJSONArray("webEntities");
+            for(int i =0 ;i < entities.length();i++ ) {
+                JSONObject descrip = entities.getJSONObject(i);
+                builder.append(descrip.getString("description")).append("\n");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
 
+        }
 
-
+        return jsonStrg = builder.toString();
+    }
+*/
 
 }
