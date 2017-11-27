@@ -4,10 +4,12 @@ package edu.selu.teamtron.whatsthis2;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -46,6 +48,7 @@ import com.google.api.services.vision.v1.model.Image;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     Bitmap bitmap;
     View view;
     ByteArrayOutputStream bytearrayoutputstream;
-    File file;
+
     FileOutputStream fileoutputstream;
     private static final String LOG_TAG = "getAlbumStorageDir";
 
@@ -152,7 +155,11 @@ public class MainActivity extends AppCompatActivity {
 
         shareButton = (Button)findViewById(R.id.share_btn);
 
+        // -- I commented out the screen shot image view
+
        //  ScreenShotHold = (ImageView)findViewById(R.id.imageView);
+
+        final Activity activity = (MainActivity) this;
 
         bytearrayoutputstream = new ByteArrayOutputStream();
 
@@ -161,33 +168,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View OnclickView) {
 
-                view = OnclickView.getRootView();
-
-                view.setDrawingCacheEnabled(true);
-
-                bitmap = view.getDrawingCache();
-
-               // ScreenShotHold.setImageBitmap(bitmap);
-
-
-                String foldername = "WhatsThis";
-                mkFolder(foldername);
-
-
-                try
-                {
-                    file.createNewFile();
-                    fileoutputstream = new FileOutputStream(file);
-                    fileoutputstream.write(bytearrayoutputstream.toByteArray());
-                    fileoutputstream.close();
-                    Log.d("WhatsThisApp","Screenshot Saved!");
-
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                    Log.d("WhatsThisApp","Screenshot not Saved!");
-                }
+                Bitmap bitmap = takeScreenShot(activity);
+                saveBitmap(bitmap);
 
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 Uri screenshotUri = Uri.parse("android.resource://" + getPackageName()
@@ -203,47 +185,62 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private static Bitmap takeScreenShot(Activity activity) {
+        View view = activity.getWindow().getDecorView();
+        view.setDrawingCacheEnabled(true);
+        view.buildDrawingCache();
+        Bitmap b1 = view.getDrawingCache();
+        Rect frame = new Rect();
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+        int statusBarHeight = frame.top;
+        int width = activity.getWindowManager().getDefaultDisplay().getWidth();
+        int height = activity.getWindowManager().getDefaultDisplay()
+                .getHeight();
+
+        Bitmap b = Bitmap.createBitmap(b1, 0, statusBarHeight, width, height
+                - statusBarHeight);
+        view.destroyDrawingCache();
+        Log.e("Screenshot", "taken successfully");
+        return b;
+
+    }
+
+    public void saveBitmap(Bitmap bitmap) {
+        File imagePath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"WhatsThisApp");
+        FileOutputStream fos;
+        try {
+            fos = new FileOutputStream(imagePath);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            Log.e("Screenshot", "saved successfully");
+
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            Log.e("GREC", e.getMessage(), e);
+        } catch (IOException e) {
+            Log.e("GREC", e.getMessage(), e);
+        }
+
+    }
+
 
     public static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
-    public int mkFolder(String folderName){ // make a folder under Environment.DIRECTORY_DCIM
+    public File mkFolder(String folderName){ // make a folder under Environment.DIRECTORY_DCIM
         String state = Environment.getExternalStorageState();
+        int result = 0;
         if (!Environment.MEDIA_MOUNTED.equals(state)){
             Log.d("myAppName", "Error: external storage is unavailable");
-            return 0;
+            result = 0;
         }
         if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
             Log.d("myAppName", "Error: external storage is read only.");
-            return 0;
+            result = 0;
         }
         Log.d("myAppName", "External storage is not read only or unavailable");
 
-        if (ContextCompat.checkSelfPermission(this, // request permission when it is not granted.
-                Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            Log.d("myAppName", "permission:WRITE_EXTERNAL_STORAGE: NOT granted!");
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
-            } else {
-
-                // No explanation needed, we can request the permission.
-
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
-            }
-        }
         File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),folderName);
-        int result = 0;
+
         if (folder.exists()) {
             Log.d("myAppName","folder exist:"+folder.toString());
             result = 2; // folder exist
@@ -260,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
                 ecp.printStackTrace();
             }
         }
-        return result;
+        return folder;
     }
 
 
