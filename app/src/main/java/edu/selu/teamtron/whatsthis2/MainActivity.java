@@ -50,7 +50,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Scanner;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -541,8 +540,7 @@ public class MainActivity extends AppCompatActivity {
         List<EntityAnnotation> landmarks = response.getResponses().get(0).getLandmarkAnnotations();
         List<EntityAnnotation> logos = response.getResponses().get(0).getLogoAnnotations();
         List<EntityAnnotation> texts = response.getResponses().get(0).getTextAnnotations();
-        //String s = response.toString();
-        //message += s;
+
 
         if (labels != null) {
             message += "Labels: \n";
@@ -583,23 +581,28 @@ public class MainActivity extends AppCompatActivity {
         }
 
         message += "Google Search Results: \n\n";
-        String searchRE = response.toString();
-        Scanner s = new Scanner(searchRE);
-        s.findInLine("webEntities");
-        StringBuilder builder = new StringBuilder();
-        for (int i =0; i<5; i++){
-           s.findInLine("entityId:");
-            if(s.hasNext("entityId:")){
-                    s.findInLine("\"description:\"");
 
-                    builder.append(s.next());
-                    message+= i;
-            }else {
-                break;
+           /*string searchRE = response.toString();
+
+            Scanner s = new Scanner(searchRE);
+            StringBuilder builder = new StringBuilder();
+            s.findInLine("\"webEntities\":");
+            //message+=builder.toString();
+
+
+            for (int i = 0; i < 5; i++) {
+
+                s.findInLine("\"entityId\":");
+
+                s.findInLine("\"description:\":");
+
+                builder.append(s.next());
+                message += i;
+
             }
-        }
-        message+=builder.toString();
+            message += builder.toString();
 
+        */
         return message;
     }
 
